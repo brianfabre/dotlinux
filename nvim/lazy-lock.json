@@ -1,0 +1,7 @@
+{
+  "Nvim-R": { "branch": "master", "commit": "4749e32ae6c39eb816db935d38cb673cc326cb5b" },
+  "formatter.nvim": { "branch": "master", "commit": "8a4c961330cc4688087f23d18fa7d2f1af9a4902" },
+  "lazy.nvim": { "branch": "main", "commit": "8aa90c34233f7de420b326de361137a571827d8c" },
+  "vimtex": { "branch": "master", "commit": "cb1460f6e6160a855bf83d93d9a34bb944f6b540" },
+  "vimwiki": { "branch": "dev", "commit": "fea8bee382b2051b0137fd2cacf0862823ee69b3" }
+}
