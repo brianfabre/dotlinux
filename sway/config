@@ -1,4 +1,4 @@
-# exec autotiling-rs
+# exec autotiling-rs 
 
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
@@ -20,7 +20,7 @@ set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_run
+set $menu wofi --show run
 
 ### Output configuration
 #
@@ -67,14 +67,14 @@ exec swayidle -w \
 #
     # Start a terminal
     bindsym $mod+Return exec $term
-    bindsym $mod+$sup+f exec MOZ_ENABLE_WAYLAND=1 firefox
+    bindsym $mod+$sup+f exec firefox
     bindsym $mod+$sup+c exec chromium --ozone-platform-hint=auto
 
     # Kill focused window
     bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+space exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -160,7 +160,7 @@ exec swayidle -w \
     bindsym $mod+t floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    # bindsym $mod+space focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
@@ -225,11 +225,11 @@ bar {
 
 input "1452:641:Apple_Internal_Keyboard_/_Trackpad" {   
     dwt enabled                 #Disable while typing
-    tap enabled                 #Tap registers as a click
+    tap disabled                 #Tap registers as a click
     accel_profile adaptive      #adaptive/flat cursor acceleration
     pointer_accel 0             #From -1 to 1: Speed of cursor
     natural_scroll enabled      #Direction of Scroll
-    scroll_factor 0.2           #Speed of Scrolling gets multiplied by this factor
+    scroll_factor 0.1           #Speed of Scrolling gets multiplied by this factor
     scroll_method two_finger    #none|two_finger|edge|on_button_down
     middle_emulation enabled    #Enables middle click
     tap_button_map lmr          #1Finger > Left Click , 2Finger > Right Click, 3Fingers > MiddleClick
@@ -240,7 +240,7 @@ input "1452:641:Apple_Internal_Keyboard_/_Trackpad" {
 
 
 output "Unknown Unknown Unknown" {
-        scale 1.75
+        scale 1.7
         scale_filter smart
     }
 
