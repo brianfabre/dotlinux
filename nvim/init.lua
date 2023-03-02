@@ -23,9 +23,7 @@ require("lazy").setup("plugins", {
 require("config.mappings")
 require("config.options")
 
--- vim.cmd([[
--- inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
--- inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
--- ]])
-
 vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
+
+-- vim.cmd("colorscheme nightfox")
+vim.cmd("colorscheme kanagawa")

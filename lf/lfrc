@@ -25,7 +25,6 @@ cmd fzf_jump ${{
 
 # custom remaps
 map / :fzf_jump
-map <enter> open
 map . set hidden!
 map d delete
 map x cut
@@ -44,6 +43,13 @@ set shell sh
 # times.
 set shellopts '-eu'
 
+# set internal field separator (IFS) to "\n" for shell commands
+# This is useful to automatically split file names in $fs and $fx properly
+# since default file separator used in these variables (i.e. 'filesep' option)
+# is newline. You need to consider the values of these options and create your
+# commands accordingly.
+set ifs "\n"
+
 # define a custom 'open' command
 # This command is called when current file is not a directory. You may want to
 # use either file extensions and/or mime types here. Below uses an editor for
@@ -54,6 +60,8 @@ cmd open &{{
         *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}
+
+map <enter> open
 
 # extract the current file with the right command
 # (xkcd link: https://xkcd.com/1168/)

@@ -12,6 +12,8 @@ vim.opt.breakindent = true -- enable indentation
 vim.opt.breakindentopt = { "shift:4", "sbr", "list:-1" } -- indent by an additional 4 characters on wrapped line
 vim.opt.showbreak = ">" -- append '>>' to indent
 vim.opt.swapfile = false
+vim.opt.title = true
+vim.wo.fillchars = "eob: "
 
 if os.getenv("WAYLAND_DISPLAY") then
 	-- Wayland

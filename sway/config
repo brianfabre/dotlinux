@@ -6,7 +6,7 @@ exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSO
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod1
-set $sup Mod4
+set $hyper Mod4
 
 # Home row direction keys, like vim
 set $left h
@@ -67,8 +67,6 @@ exec swayidle -w \
 #
     # Start a terminal
     bindsym $mod+Return exec $term
-    bindsym $mod+$sup+f exec firefox
-    bindsym $mod+$sup+c exec chromium --ozone-platform-hint=auto
 
     # Kill focused window
     bindsym $mod+q kill
@@ -115,6 +113,7 @@ exec swayidle -w \
 #
 # Workspaces:
 #
+    bindsym $hyper+space workspace back_and_forth
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
@@ -234,7 +233,7 @@ input "1452:641:Apple_Internal_Keyboard_/_Trackpad" {
     middle_emulation enabled    #Enables middle click
     tap_button_map lmr          #1Finger > Left Click , 2Finger > Right Click, 3Fingers > MiddleClick
 
-    xkb_options caps:escape
+    xkb_options caps:hyper
 }
 
 
@@ -261,7 +260,7 @@ output "Unknown Unknown Unknown" {
     bindsym $mod+f11 exec amixer set Master 5%- unmute
     bindsym $mod+f12 exec amixer set Master 5%+ unmute
 
-    bindsym $sup+1 exec grim -g "$(slurp)" - | tesseract -l "eng" stdin stdout | wl-copy
+    bindsym $hyper+1 exec grim -g "$(slurp)" - | tesseract -l "eng" stdin stdout | wl-copy
     bindsym $mod+i rename
 
 
