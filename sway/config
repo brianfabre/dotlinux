@@ -1,4 +1,4 @@
-# exec autotiling-rs 
+exec autotiling-rs -w 1
 
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
@@ -20,7 +20,7 @@ set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wofi --show run
+set $menu wofi --show drun -I --width=35% --height=35%
 
 ### Output configuration
 #
@@ -239,7 +239,7 @@ input "1452:641:Apple_Internal_Keyboard_/_Trackpad" {
 
 
 output "Unknown Unknown Unknown" {
-        scale 1.7
+        scale 1.6
         scale_filter smart
     }
 
@@ -267,6 +267,9 @@ output "Unknown Unknown Unknown" {
 
 focus_follows_mouse no
 
+# swaymsg -t get_tree
+for_window [app_id="org.kde.dolphin"] floating enable
+for_window [app_id="qt5ct"] floating enable
 
 
 include @sysconfdir@/sway/config.d/*
