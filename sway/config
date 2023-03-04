@@ -20,7 +20,8 @@ set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wofi --show drun -I --width=35% --height=35%
+# set $menu wofi --show drun -I -i --width=35% --height=35%
+set $menu wofi
 
 ### Output configuration
 #
@@ -233,9 +234,13 @@ input "1452:641:Apple_Internal_Keyboard_/_Trackpad" {
     middle_emulation enabled    #Enables middle click
     tap_button_map lmr          #1Finger > Left Click , 2Finger > Right Click, 3Fingers > MiddleClick
 
+    xkb_layout us,kr
     xkb_options caps:hyper
 }
 
+input "1133:16500:Logitech_G305" {   
+    pointer_accel -0.5
+}
 
 
 output "Unknown Unknown Unknown" {
@@ -265,11 +270,27 @@ output "Unknown Unknown Unknown" {
 
 
 
-focus_follows_mouse no
 
 # swaymsg -t get_tree
-for_window [app_id="org.kde.dolphin"] floating enable
-for_window [app_id="qt5ct"] floating enable
+for_window [app_id="org.kde.dolphin"]             floating enable
+for_window [app_id="qt5ct"]                       floating enable
+for_window [app_id="pavucontrol"]                 floating enable
+for_window [app_id="org.fcitx.fcitx5-config-qt"]  floating enable
 
+# removes title bar
+default_border pixel 2
+default_floating_border normal 1
+gaps inner 5
+focus_follows_mouse no
+
+bindsym $mod+p exec ~/.config/wofi/scripts/wofi-power.sh
+
+include colorscheme
+client.focused          $base0F $base07 $base00 $base0D $base0D
+# client.focused_inactive $base01 $base0F $base05 $base03 $base01
+# client.unfocused        $base01 $base0D $base05 $base01 $base01
+# client.urgent           $base08 $base08 $base00 $base08 $base08
+#client.placeholder $base00 $base00 $base05 $base00 $base00
+#client.background $base07
 
 include @sysconfdir@/sway/config.d/*
