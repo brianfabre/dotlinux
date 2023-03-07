@@ -7,7 +7,7 @@
   "cmp-omni": { "branch": "main", "commit": "8457e4144ea2fc5efbadb7d22250d5ee8f8862ba" },
   "formatter.nvim": { "branch": "master", "commit": "ed949c13e1a942db29ababa35e8c7864ced90eb6" },
   "kanagawa.nvim": { "branch": "master", "commit": "4c8d48726621a7f3998c7ed35b2c2535abc22def" },
-  "lazy.nvim": { "branch": "main", "commit": "26d121ea13bee96b079403cee6598f04969d4983" },
+  "lazy.nvim": { "branch": "main", "commit": "14075657131b9a19883a8845c47f1ab65461cd6f" },
   "nightfox.nvim": { "branch": "main", "commit": "5e9c8ca12f0bfefd958d3729ee2182499e7a6e73" },
   "nvim-cmp": { "branch": "main", "commit": "01f697a68905f9dcae70960a9eb013695a17f9a2" },
   "nvim-tree.lua": { "branch": "master", "commit": "362ecbeed69fae91a287004619decadcb6f7c113" },
