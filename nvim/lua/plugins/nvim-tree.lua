@@ -22,10 +22,12 @@ local M = {
 				},
 			},
 		})
+
 		vim.keymap.set("n", "<leader>v", ":NvimTreeToggle<cr>", {
 			desc = "Toggle NvimTree",
 			silent = true,
 		})
+
 		vim.g.loaded = 1
 		vim.g.loaded_netrwPlugin = 1
 	end,
