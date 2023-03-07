@@ -258,12 +258,17 @@ output "Unknown Unknown Unknown" {
 #
 # Function keys:
 #
-    # Change brightness
-    bindsym $mod+f2 exec brightnessctl set +5%
-    bindsym $mod+f1 exec brightnessctl set 5%-
-    # Change volume
-    bindsym $mod+f11 exec amixer set Master 5%- unmute
-    bindsym $mod+f12 exec amixer set Master 5%+ unmute
+
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+    bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+    bindsym XF86AudioPlay exec playerctl play-pause
+    bindsym XF86AudioNext exec playerctl next
+    bindsym XF86AudioPrev exec playerctl previous
+    bindsym XF86Search exec $menu
 
     bindsym $hyper+1 exec grim -g "$(slurp)" - | tesseract -l "eng" stdin stdout | wl-copy
     bindsym $mod+i rename
@@ -285,12 +290,5 @@ focus_follows_mouse no
 
 bindsym $mod+p exec ~/.config/wofi/scripts/wofi-power.sh
 
-include colorscheme
-client.focused          $base0F $base07 $base00 $base0D $base0D
-# client.focused_inactive $base01 $base0F $base05 $base03 $base01
-# client.unfocused        $base01 $base0D $base05 $base01 $base01
-# client.urgent           $base08 $base08 $base00 $base08 $base08
-#client.placeholder $base00 $base00 $base05 $base00 $base00
-#client.background $base07
 
 include @sysconfdir@/sway/config.d/*
