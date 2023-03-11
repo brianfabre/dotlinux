@@ -1,4 +1,5 @@
-exec stacki3
+# exec stacki3
+exec_always autotiling-rs -w 1 2 3 4 5 
 
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
@@ -129,6 +130,8 @@ exec swayidle -w \
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+    bindsym $hyper+l workspace next
+    bindsym $hyper+h workspace prev
 #
 # Layout stuff:
 #
@@ -267,6 +270,17 @@ output "Unknown Unknown Unknown" {
     bindsym $mod+i rename
 
     bindsym $mod+p exec ~/.config/wofi/scripts/wofi-power.sh
+
+    # create a workspace, assign it to an output
+    # workspace zotero output *
+    # assign windows to specific workspace by using the app_id
+    assign [app_id="firefox"] workspace number 1
+    assign [class="Zotero"] workspace number 3
+    bindsym $hyper+a workspace 1
+    bindsym $hyper+s workspace 2
+    bindsym $hyper+d workspace 3
+    bindsym $hyper+f workspace 4
+
 
 
 include @sysconfdir@/sway/config.d/*
