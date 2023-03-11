@@ -8,6 +8,7 @@
   "formatter.nvim": { "branch": "master", "commit": "ed949c13e1a942db29ababa35e8c7864ced90eb6" },
   "kanagawa.nvim": { "branch": "master", "commit": "d0613a6e6df5fa379e6e443755e292b6d89465a4" },
   "lazy.nvim": { "branch": "main", "commit": "e89acede13f46a5db229133cf0c87aee74938c56" },
+  "mini.tabline": { "branch": "main", "commit": "9267290f448eccd6a2a56c9e76a79ed774c4ca89" },
   "nightfox.nvim": { "branch": "main", "commit": "3f647a560306306cb35854d639b39717f5390175" },
   "no-neck-pain.nvim": { "branch": "main", "commit": "1e46896d9096a878355cc5163624f4ae9217c5d6" },
   "nvim-cmp": { "branch": "main", "commit": "feed47fd1da7a1bad2c7dca456ea19c8a5a9823a" },

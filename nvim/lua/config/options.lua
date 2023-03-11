@@ -15,6 +15,7 @@ vim.opt.swapfile = false
 vim.opt.title = true
 vim.wo.fillchars = "eob: "
 vim.opt.splitbelow = true
+vim.opt.laststatus = 3
 
 if os.getenv("WAYLAND_DISPLAY") then
 	-- Wayland
