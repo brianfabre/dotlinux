@@ -4,11 +4,26 @@ set ignorecase true
 set drawbox
 # set icons true
 
+
+# set directory as terminal title
+cmd on-cd &{{
+    printf "\033]0; $PWD\007" > /dev/tty
+}}
+# run at startup
+on-cd
+
+
 # custom functions
 cmd mkdir ${{
   printf "Directory Name: "
   read ans
   mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  touch $ans
 }}
 
 cmd fzf_jump ${{
@@ -23,12 +38,19 @@ cmd fzf_jump ${{
     lf -remote "send $id $cmd \"$res\""
 }}
 
+
+# copy file path
+cmd yank-path $printf '%s' "$fx" | wl-copy
+map Y yank-path
+
+
 # custom remaps
 map / :fzf_jump
 map . set hidden!
 map d delete
 map x cut
-map a mkdir
+map A mkdir
+map a mkfile
 map zp zip
 
 # interpreter for shell commands
@@ -94,4 +116,3 @@ cmd zip ${{
     zip -r $1.zip $1
     rm -rf $1
 }}
-

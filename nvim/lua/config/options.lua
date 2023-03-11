@@ -14,6 +14,7 @@ vim.opt.showbreak = ">" -- append '>>' to indent
 vim.opt.swapfile = false
 vim.opt.title = true
 vim.wo.fillchars = "eob: "
+vim.opt.splitbelow = true
 
 if os.getenv("WAYLAND_DISPLAY") then
 	-- Wayland

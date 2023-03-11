@@ -1,4 +1,4 @@
-return {
+local M = {
 	"lervag/vimtex",
 	config = function()
 		vim.cmd([[let g:vimtex_view_method = 'zathura']])
@@ -10,3 +10,5 @@ return {
 		-- vim.g.vimtex_view_forward_search_on_start = 0
 	end,
 }
+
+return M

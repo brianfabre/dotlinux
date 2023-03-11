@@ -46,15 +46,15 @@ local M = {
 						-- hide_on_startup = true, -- hide previewer when picker starts
 					},
 					borderchars = borderchars,
-					-- ripgrep_arguments = {
-					-- 	"rg",
-					-- 	"--hidden",
-					-- 	"--no-heading",
-					-- 	"--with-filename",
-					-- 	"--line-number",
-					-- 	"--column",
-					-- 	"--smart-case",
-					-- },
+					ripgrep_arguments = {
+						"rg",
+						"--hidden",
+						"--no-heading",
+						"--with-filename",
+						"--line-number",
+						"--column",
+						"--smart-case",
+					},
 				},
 				extensions = {
 					fzf = {

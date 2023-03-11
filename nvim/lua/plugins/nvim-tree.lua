@@ -5,6 +5,12 @@ local M = {
 	},
 	config = function()
 		require("nvim-tree").setup({
+			reload_on_bufenter = true,
+			respect_buf_cwd = true,
+			-- update_focused_file = {
+			-- 	enable = true,
+			-- 	update_root = true,
+			-- },
 			renderer = {
 				icons = {
 					show = {

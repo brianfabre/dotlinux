@@ -3,6 +3,10 @@ alias nv="nvim"
 alias lg="lazygit"
 alias chromium="chromium --ozone-platform-hint=auto"
 
+# case insensitive search
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+autoload -Uz compinit && compinit
+
 # for LF
 export OPENER=xdg-open
 
@@ -40,7 +44,7 @@ lfcd () {
 }
 
 #bindkey -s '^o' '^ulfcd\n'
-alias lf="lf"
+alias lf="lfcd"
 
 
 

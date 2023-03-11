@@ -1,6 +1,10 @@
-exec autotiling-rs -w 1
+exec stacki3
 
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+# set $opacity 0.8
+# for_window [class=".*"] opacity $opacity
+# for_window [app_id=".*"] opacity $opacity
 
 ### Variables
 #
@@ -18,8 +22,6 @@ set $right l
 set $term foot
 
 # Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
 # set $menu wofi --show drun -I -i --width=35% --height=35%
 set $menu wofi
 
@@ -33,6 +35,8 @@ set $menu wofi
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+output * bg "$HOME/Bob/Wallpapers/mountain.jpeg" fill
+
 
 ### Idle configuration
 #
@@ -47,20 +51,6 @@ exec swayidle -w \
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
-
-### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
 
 ### Key bindings
 #
@@ -160,7 +150,7 @@ exec swayidle -w \
     bindsym $mod+t floating toggle
 
     # Swap focus between the tiling area and the floating area
-    # bindsym $mod+space focus mode_toggle
+    # bindsym $mod+Shift+space focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
@@ -185,9 +175,9 @@ mode "resize" {
     # up will shrink the containers height
     # down will grow the containers height
     bindsym $left resize shrink width 10px
+    bindsym $right resize grow width 10px
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
 
     # Ditto, with arrow keys
     bindsym Left resize shrink width 10px
@@ -201,28 +191,12 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-# bar {
-#     position top
-# 
-#     # When the status_command prints a new line to stdout, swaybar updates.
-#     # The default just shows the current date and time.
-#     status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-# 
-#     colors {
-#         statusline #ffffff
-#         background #323232
-#         inactive_workspace #32323200 #32323200 #5c5c5c
-#     }
-# }
 
 bar { 
      swaybar_command waybar
 }
 
+# You can get the names of your inputs by running: swaymsg -t get_inputs
 input "1452:641:Apple_Internal_Keyboard_/_Trackpad" {   
     dwt enabled                 #Disable while typing
     tap disabled                 #Tap registers as a click
@@ -249,12 +223,6 @@ output "Unknown Unknown Unknown" {
     }
 
 
-# change brightness
-# brightnessctl set +20%
-# brightnessctl set 20%-
-# change sound
-# pacman -S alsa-utils
-
 #
 # Function keys:
 #
@@ -270,25 +238,35 @@ output "Unknown Unknown Unknown" {
     bindsym XF86AudioPrev exec playerctl previous
     bindsym XF86Search exec $menu
 
+
+#
+# custom settings:
+#
+
+    # swaymsg -t get_tree
+    for_window [app_id="org.kde.dolphin"]             floating enable
+    for_window [app_id="qt5ct"]                       floating enable
+    for_window [app_id="pavucontrol"]                 floating enable
+    for_window [app_id="org.fcitx.fcitx5-config-qt"]  floating enable
+
+    # removes title bar
+    default_border pixel 2
+    default_floating_border normal 1
+
+    # gap
+    gaps inner 5
+
+    # bright green border
+    client.focused "#39FF14" "#39FF14" "#39FF14" "#39FF14"
+
+    # ocr screenshot
     bindsym $hyper+1 exec grim -g "$(slurp)" - | tesseract -l "eng" stdin stdout | wl-copy
+
+    # etc
+    focus_follows_mouse no
     bindsym $mod+i rename
 
-
-
-
-# swaymsg -t get_tree
-for_window [app_id="org.kde.dolphin"]             floating enable
-for_window [app_id="qt5ct"]                       floating enable
-for_window [app_id="pavucontrol"]                 floating enable
-for_window [app_id="org.fcitx.fcitx5-config-qt"]  floating enable
-
-# removes title bar
-default_border pixel 2
-default_floating_border normal 1
-gaps inner 5
-focus_follows_mouse no
-
-bindsym $mod+p exec ~/.config/wofi/scripts/wofi-power.sh
+    bindsym $mod+p exec ~/.config/wofi/scripts/wofi-power.sh
 
 
 include @sysconfdir@/sway/config.d/*

@@ -7,10 +7,10 @@ local M = {
 			auto_install = true,
 			highlight = {
 				enable = true,
-				disable = { "markdown" },
+				disable = { "latex" },
 			},
 			incremental_selection = {
-				enable = true,
+				enable = false,
 				keymaps = {
 					init_selection = "<CR>",
 					node_incremental = "<CR>",
