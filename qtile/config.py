@@ -146,6 +146,8 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
+        wallpaper="/home/brian/Bob/Wallpapers/aerial.jpeg",
+        wallpaper_mode="fill",
         top=bar.Bar(
             [
                 # widget.CurrentLayoutIcon(custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")]),
@@ -162,14 +164,9 @@ screens = [
                     # this_current_screen_border=colors[5],
                 ),
                 widget.WindowName(max_chars=60, format="{name}"),
-                widget.CPU(format="{load_percent}%"),
                 widget.TextBox(text=" "),
-                widget.GenPollText(
-                    update_interval=2,
-                    func=lambda: subprocess.check_output(
-                        os.path.expanduser("~/.config/qtile/battery.sh"),
-                    ).decode("utf-8"),
-                ),
+                widget.TextBox(text="󰘚 "),
+                widget.CPU(format="{load_percent}%"),
                 widget.TextBox(text=" "),
                 widget.TextBox(text=" "),
                 widget.Backlight(
@@ -181,7 +178,14 @@ screens = [
                 widget.Volume(),
                 widget.TextBox(text=" "),
                 widget.TextBox(text=" "),
-                widget.Wlan(interface="wlan0"),
+                widget.Wlan(interface="wlan0", format="{essid} {percent:2.0%}"),
+                widget.TextBox(text=" "),
+                widget.GenPollText(
+                    update_interval=2,
+                    func=lambda: subprocess.check_output(
+                        os.path.expanduser("~/.config/qtile/battery.sh"),
+                    ).decode("utf-8"),
+                ),
                 widget.TextBox(text=" "),
                 widget.Clock(format="%Y/%m/%d %H:%M"),
             ],
@@ -246,6 +250,7 @@ wl_input_rules = {
         kb_layout="custom",
         kb_repeat_rate=50,
         kb_repeat_delay=400,
+        tap=True,
     ),
 }
 
