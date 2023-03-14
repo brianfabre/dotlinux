@@ -23,6 +23,7 @@ require("lazy").setup("plugins", {
 require("config.mappings")
 require("config.options")
 require("utils.run_code")
+require("utils.autohide_tab")
 
 vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
 

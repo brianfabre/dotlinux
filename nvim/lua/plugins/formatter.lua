@@ -10,12 +10,36 @@ return {
 			}
 		end
 
+		local black = function()
+			return {
+				exe = "black",
+				args = { "-" },
+				stdin = true,
+			}
+		end
+
+		local styler = function()
+			return {
+				exe = "R",
+				args = {
+					"--slave",
+					"--no-restore",
+					"--no-save",
+					"-e",
+					"'con <- file(\"stdin\"); styler::style_text(readLines(con)); close(con)'",
+					"2>/dev/null",
+				},
+				stdin = true,
+			}
+		end
+
 		-- setup
 		require("formatter").setup({
 			-- logging = true,
 			filetype = {
 				lua = { stylua },
-				-- r = { styler },
+				python = { black },
+				r = { styler },
 			},
 		})
 

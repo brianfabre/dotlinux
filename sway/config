@@ -1,5 +1,5 @@
-# exec stacki3
-exec_always autotiling-rs -w 1 2 3 4 5 
+exec stacki3
+# exec_always autotiling-rs -w 1 2 4 5 
 
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
@@ -11,7 +11,8 @@ exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSO
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod1
-set $hyper Mod4
+set $hyper Mod3
+set $super Mod4
 
 # Home row direction keys, like vim
 set $left h
@@ -36,6 +37,8 @@ set $menu wofi
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+# set $wallpapers_path $HOME/Bob/Wallpapers
+# output * bg `find $wallpapers_path -type f | shuf -n 1` fill
 output * bg "$HOME/Bob/Wallpapers/mountain.jpeg" fill
 
 
@@ -132,6 +135,10 @@ exec swayidle -w \
     # We just use 1-10 as the default.
     bindsym $hyper+l workspace next
     bindsym $hyper+h workspace prev
+    bindsym $hyper+a workspace number 1
+    bindsym $hyper+s workspace number 2
+    bindsym $hyper+d workspace number 3
+    bindsym $hyper+f workspace number 4
 #
 # Layout stuff:
 #
@@ -147,7 +154,7 @@ exec swayidle -w \
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    bindsym $mod+tab fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+t floating toggle
@@ -197,6 +204,7 @@ bindsym $mod+r mode "resize"
 
 bar { 
      swaybar_command waybar
+     strip_workspace_numbers yes
 }
 
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -212,7 +220,8 @@ input "1452:641:Apple_Internal_Keyboard_/_Trackpad" {
     tap_button_map lmr          #1Finger > Left Click , 2Finger > Right Click, 3Fingers > MiddleClick
 
     xkb_layout us,kr
-    xkb_options caps:hyper
+    # xkb_options caps:hyper
+    xkb_layout custom
 }
 
 input "1133:16500:Logitech_G305" {   
@@ -260,7 +269,7 @@ output "Unknown Unknown Unknown" {
     gaps inner 5
 
     # bright green border
-    client.focused "#39FF14" "#39FF14" "#39FF14" "#39FF14"
+    # client.focused "#39FF14" "#39FF14" "#39FF14" "#39FF14"
 
     # ocr screenshot
     bindsym $hyper+1 exec grim -g "$(slurp)" - | tesseract -l "eng" stdin stdout | wl-copy
@@ -274,13 +283,12 @@ output "Unknown Unknown Unknown" {
     # create a workspace, assign it to an output
     # workspace zotero output *
     # assign windows to specific workspace by using the app_id
-    assign [app_id="firefox"] workspace number 1
-    assign [class="Zotero"] workspace number 3
-    bindsym $hyper+a workspace 1
-    bindsym $hyper+s workspace 2
-    bindsym $hyper+d workspace 3
-    bindsym $hyper+f workspace 4
+    # assign [app_id="firefox"] workspace number 1
+    assign [class="Zotero"] workspace zotero
+    bindsym $hyper+z workspace zotero
 
+    # for_window [app_id="imv"] floating enable
+    # for_window [app_id="imv"] resize set 900 600
 
 
 include @sysconfdir@/sway/config.d/*

@@ -1,3 +1,11 @@
+# append
+path+=('/home/brian/.cargo/bin')
+export PATH
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # custom options
 alias nv="nvim"
 alias lg="lazygit"
@@ -7,8 +15,6 @@ alias chromium="chromium --ozone-platform-hint=auto"
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 autoload -Uz compinit && compinit
 
-# for LF
-export OPENER=xdg-open
 
 # called when executing a command
 # set foot title
@@ -16,14 +22,17 @@ function preexec {
     print -Pn "\e]0;${(q)1}\e\\"
 }
 
-PROMPT='%F{blue}%~ %(?.%F{green}.%F{red})%#%f '
+# PROMPT='%F{blue}%~ %(?.%F{green}.%F{red})%#%f '
+PROMPT="%n %~ $ "
 MACASAHI=/run/media/brian/MacAsahi/
 QT_QPA_PLATFORMTHEME=qt5ct
 
-export XDG_SESSION_TYPE=wayland
-export XDG_CURRENT_DESKTOP=sway
+# export XDG_SESSION_TYPE=wayland
+# export XDG_CURRENT_DESKTOP=sway
 export EDITOR=nvim
 export GTK_USE_PORTAL=0
+# for LF
+export OPENER=xdg-open
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
@@ -43,7 +52,7 @@ lfcd () {
     fi
 }
 
-#bindkey -s '^o' '^ulfcd\n'
+# bindkey -s '^o' '^ulfcd\n'
 alias lf="lfcd"
 
 
@@ -190,15 +199,15 @@ if [[ "$TERM" == xterm* ]] ; then
   precmd_functions+='precmd_term_title'
 fi
 
-# prompt
-if [[ "$USER" == "root" ]] ; then
-	PROMPT=$'%B%F{red}%n%b%F{default}@%B%F{cyan}%m%b%F{default}:%B%F{blue}%~%b%F{default}%F{default} %(?.-.%F{red}%?%F{default})%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
-else
-	preexec_functions+='preexec_update_git_vars'
-	precmd_functions+='precmd_update_git_vars'
-	chpwd_functions+='chpwd_update_git_vars'
-	PROMPT=$'%B%F{green}%n%b%F{default}@%B%F{cyan}%m%b%F{default}:%B%F{blue}%~%b%F{default}%F{yellow}$(prompt_git_info)%F{default} %(?.-.%F{red}%?%F{default})%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
-fi
+# # prompt
+# if [[ "$USER" == "root" ]] ; then
+# 	PROMPT=$'%B%F{red}%n%b%F{default}@%B%F{cyan}%m%b%F{default}:%B%F{blue}%~%b%F{default}%F{default} %(?.-.%F{red}%?%F{default})%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
+# else
+# 	preexec_functions+='preexec_update_git_vars'
+# 	precmd_functions+='precmd_update_git_vars'
+# 	chpwd_functions+='chpwd_update_git_vars'
+# 	PROMPT=$'%B%F{green}%n%b%F{default}@%B%F{cyan}%m%b%F{default}:%B%F{blue}%~%b%F{default}%F{yellow}$(prompt_git_info)%F{default} %(?.-.%F{red}%?%F{default})%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
+# fi
 
 # tab-completion
 autoload -Uz compinit
